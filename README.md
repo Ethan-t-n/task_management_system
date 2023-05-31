@@ -50,6 +50,15 @@ Before running the Task Management System, make sure you have the following inst
 - To delete a task, click on the "Delete" link next to the task in the list. A confirmation dialog will appear, and upon confirmation, the task will be permanently deleted.
 - To view the details of a specific task, click on the "Show" link next to the task in the list. The details page will display the task name, description, and completion status.
 
+## Testing
+The Task Management System includes automated tests to ensure the functionality of the application. The tests cover various aspects of the system, including models, controllers, and views.
+
+To run the tests, insert and run the code below into your terminal:
+   
+   ```bash
+   rails test
+   ```
+
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
