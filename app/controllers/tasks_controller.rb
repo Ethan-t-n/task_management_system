@@ -37,6 +37,11 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
+  def clear_all
+    Task.destroy_all
+    redirect_to tasks_url, notice: 'All tasks were successfully cleared.'
+  end
+
   private
 
   def set_task
