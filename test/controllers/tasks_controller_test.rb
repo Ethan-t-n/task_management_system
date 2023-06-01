@@ -44,6 +44,15 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Task.count', -1) do
       delete task_url(@task)
     end
+  end
+
+  test "should clear all tasks" do
+    Task.create(name: "Task 1", description: "Sample description", completed: false)
+    Task.create(name: "Task 2", description: "Sample description", completed: true)
+
+    assert_difference('Task.count', -Task.count) do
+      delete clear_all_tasks_url
+    end
 
     assert_redirected_to tasks_url
   end
