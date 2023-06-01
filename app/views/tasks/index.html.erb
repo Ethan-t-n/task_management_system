@@ -23,12 +23,14 @@
 
     <table>
       <thead>
+      <% if @tasks.any? %>
         <tr>
           <th>Name</th>
           <th>Description</th>
           <th>Completed</th>
           <th colspan="2"></th>
         </tr>
+      <% end %>
       </thead>
       <tbody>
         <% @tasks.each do |task| %>
