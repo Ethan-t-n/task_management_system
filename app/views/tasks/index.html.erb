@@ -15,15 +15,39 @@
       right: 0;
       margin: 10px;
     }
+
+    .task-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .task-table th,
+    .task-table td {
+      padding: 8px;
+      border: 1px solid #000000;
+    }
+
+    .task-table th {
+      background-color: #C1C0C0;
+      font-weight: bold;
+    }
+
+    .task-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .task-table tr:hover {
+      background-color: #e6e6e6;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Task List</h1>
 
-    <table>
-      <thead>
       <% if @tasks.any? %>
+      <table class="task-table">
+        <thead>
         <tr>
           <th>Name</th>
           <th>Description</th>
