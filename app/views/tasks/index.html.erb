@@ -62,7 +62,7 @@
       </thead>
       <tbody>
         <% @tasks.each.with_index(1) do |task, index| %>
-          <tr>
+          <tr class="<%= task.completed? ? 'completed' : '' %>">
           <td><%= index %></td>
             <td><%= task.name %></td>
             <td><%= task.description %></td>
