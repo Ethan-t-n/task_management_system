@@ -33,7 +33,11 @@
     }
 
     .task-table tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background-color: #8193e8;
+    }
+
+    .task-table tr:nth-child(odd) {
+      background-color: #f9f9f9; 
     }
 
     .task-table tr:hover {
@@ -49,6 +53,7 @@
       <table class="task-table">
         <thead>
         <tr>
+          <th>#</th>
           <th>Name</th>
           <th>Description</th>
           <th>Completed</th>
@@ -57,8 +62,9 @@
       <% end %>
       </thead>
       <tbody>
-        <% @tasks.each do |task| %>
+        <% @tasks.each.with_index(1) do |task, index| %>
           <tr>
+          <td><%= index %></td>
             <td><%= task.name %></td>
             <td><%= task.description %></td>
             <td><%= task.completed ? 'Yes' : 'No' %></td>
