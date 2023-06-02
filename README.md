@@ -10,6 +10,8 @@ The Task Management System is a web application built with Ruby on Rails that al
 - Delete tasks from the system.
 - View a list of all tasks with their details.
 - View individual task details.
+- Sorts completed tasks to the bottom of the list.
+- Crosses out tasks if they are completed.
 - User-friendly interface with intuitive navigation.
 
 ## Prerequisites
