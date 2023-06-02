@@ -56,4 +56,20 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to tasks_url
   end
+
+  test "should get index and sort completed tasks to the bottom" do
+    completed_task = Task.create(name: "Completed Task", completed: true)
+  incomplete_task = Task.create(name: "Incomplete Task", completed: false)
+
+  get tasks_url
+
+  assert_response :success
+
+  task_rows = response.body.scan(/<tr>(.*?)<\/tr>/m).flatten
+  task_names = task_rows.map { |row| row.scan(/<td>(.*?)<\/td>/).flatten[0] }
+  task_completed = task_rows.map { |row| row.scan(/<td>(.*?)<\/td>/).flatten[2] } # Adjusted index for completion status
+
+  assert_equal ["Incomplete Task", "Completed Task"], task_names.last(2)
+  assert_equal ["No", "Yes"], task_completed.last(2)
+  end
 end
