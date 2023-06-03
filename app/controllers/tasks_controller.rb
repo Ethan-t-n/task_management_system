@@ -18,8 +18,8 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.time_start = Time.zone.parse(params[:task][:time_start])
-    @task.time_end = Time.zone.parse(params[:task][:time_end])
+    @task.time_start = Time.zone.parse(params[:task][:time_start]) if params.dig(:task, :time_start).present?
+    @task.time_end = Time.zone.parse(params[:task][:time_end]) if params.dig(:task, :time_end).present?
 
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
