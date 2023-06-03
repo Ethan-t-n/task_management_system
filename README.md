@@ -37,7 +37,7 @@ Before running the Task Management System, make sure you have the following inst
 3. Set up the database in your terminal:
 
    ```bash
-   rails db:setup
+   rails db:migrate
    ```
 4. Start the Rails server in your terminal:
 
