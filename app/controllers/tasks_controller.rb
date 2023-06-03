@@ -3,6 +3,10 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.order(completed: :asc)
+    @tasks.each do |task|
+      task.update(time_frame_start: DateTime.new(2023, 6, 3, 10, 0, 0), time_frame_end: DateTime.new(2023, 6, 3, 12, 0, 0)) if task.time_frame_start.nil?
+  end
+
   end
 
   def show
@@ -14,6 +18,9 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.time_start = Time.zone.parse(params[:task][:time_start])
+    @task.time_end = Time.zone.parse(params[:task][:time_end])
+
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
     else
@@ -26,6 +33,9 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
+      @task.time_start = Time.zone.parse(params[:task][:time_start]) if params[:task][:time_start].present?
+      @task.time_end = Time.zone.parse(params[:task][:time_end]) if params[:task][:time_end].present?
+
       redirect_to @task, notice: 'Task was successfully updated.'
     else
       render :edit
@@ -49,6 +59,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :completed)
+    params.require(:task).permit(:name, :description, :completed, :time_frame_start, :time_frame_end, :time_start, :time_end)
   end
 end
