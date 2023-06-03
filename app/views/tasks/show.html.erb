@@ -2,6 +2,8 @@
 
 <p><strong>Name:</strong> <%= @task.name %></p>
 <p><strong>Description:</strong> <%= @task.description %></p>
+<p><strong>Start Time:</strong> <%= @task.time_start&.strftime("%H:%M") || "N/A" %></p>
+<p><strong>End Time:</strong> <%= @task.time_end&.strftime("%H:%M") || "N/A" %></p>
 <p><strong>Completed:</strong> <%= @task.completed ? 'Yes' : 'No' %></p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
