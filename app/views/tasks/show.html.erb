@@ -1,11 +1,48 @@
-<h1>Task Details</h1>
+<style>
+  .task-details {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-<p><strong>Name:</strong> <%= @task.name %></p>
-<p><strong>Description:</strong> <%= @task.description %></p>
-<p><strong>Start Time:</strong> <%= @task.time_start&.strftime("%H:%M") || "N/A" %></p>
-<p><strong>End Time:</strong> <%= @task.time_end&.strftime("%H:%M") || "N/A" %></p>
-<p><strong>Completed:</strong> <%= @task.completed ? 'Yes' : 'No' %></p>
+  .task-details th,
+  .task-details td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+  }
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure you want to delete this task?' } %> |
-<%= link_to 'Done', tasks_path %>
+  .task-details th {
+    background-color: #cccccc;
+  }
+
+  .task-details tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+</style>
+
+<table class="task-details">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @task.name %></td>
+      <td><%= @task.description %></td>
+      <td><%= @task.time_start&.strftime("%H:%M %p") || "N/A" %></td>
+      <td><%= @task.time_end&.strftime("%H:%M %p") || "N/A" %></td>
+      <td><%= @task.completed ? 'Yes' : 'No' %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="actions">
+  <%= link_to 'Edit', edit_task_path(@task), class: 'edit-link' %>
+  <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure you want to delete this task?' }, class: 'delete-link' %>
+  <%= link_to 'Done', tasks_path, class: 'done-link' %>
+</div>
