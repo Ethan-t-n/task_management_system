@@ -23,12 +23,12 @@
 
   <div class="field">
     <%= form.label :time_start %>
-    <%= form.time_select :time_start, { include_blank: true }, { class: 'timepicker' } %>
+    <%= form.time_select :time_start, { include_blank: true, ampm: true }, { class: 'timepicker' } %>
   </div>
 
   <div class="field">
     <%= form.label :time_end %>
-    <%= form.time_select :time_end, { include_blank: true }, { class: 'timepicker' } %>
+    <%= form.time_select :time_end, { include_blank: true, ampm: true }, { class: 'timepicker' } %>
   </div>
 
   <div class="field">
