@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.order(completed: :asc)
+    @tasks = Task.order(completed: :asc, time_start: :asc)
     @tasks.each do |task|
       task.update(time_frame_start: DateTime.new(2023, 6, 3, 10, 0, 0), time_frame_end: DateTime.new(2023, 6, 3, 12, 0, 0)) if task.time_frame_start.nil?
     end
