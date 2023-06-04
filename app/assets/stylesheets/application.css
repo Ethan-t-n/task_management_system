@@ -42,3 +42,15 @@ tr.completed td:not(:nth-last-child(-n+4)) {
     text-decoration: line-through;
     color: #000000;
 }
+
+.form-container {
+  margin-bottom: 20px;
+}
+
+.form-container .field {
+    margin-bottom: 10px;
+}
+
+.back-link {
+  margin-top: 5px;
+}
