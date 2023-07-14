@@ -45,6 +45,15 @@ body.background-color-5 {
     background-color: #979700;
     }
 
+#clock-container {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    }
+
 ul {
     list-style: none;
     padding: 0;

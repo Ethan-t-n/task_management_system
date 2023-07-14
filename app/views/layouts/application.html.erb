@@ -7,6 +7,38 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+      #clock-container {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ffffff;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var clockContainer = document.createElement('div');
+        clockContainer.id = 'clock-container';
+        document.body.appendChild(clockContainer);
+
+        function updateClock() {
+          var now = new Date();
+          var hours = now.getHours().toString().padStart(2, '0');
+          var minutes = now.getMinutes().toString().padStart(2, '0');
+          var seconds = now.getSeconds().toString().padStart(2, '0');
+          var timeString = hours + ':' + minutes + ':' + seconds;
+
+          clockContainer.textContent = timeString;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+      });
+    </script>
   </head>
 
   <body>
