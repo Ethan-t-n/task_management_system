@@ -6,8 +6,24 @@
  *= require_self
  */
 
-tr.completed td:not(:nth-last-child(-n+3)) {
+tr.completed td:not(:nth-last-child(-n+4)) {
   text-decoration: line-through;
-  color: #6b7280;
+  color: #6c757d; /* Bootstrap-ish muted */
 }
 
+body {
+  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+  min-height: 100vh;
+}
+
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+#clock-container {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}

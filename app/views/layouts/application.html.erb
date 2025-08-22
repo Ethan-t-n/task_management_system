@@ -6,15 +6,37 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-dUgjrLMR7PRhJr6nfuY8Br/pKnVBajp8j+EuY1/6VXOvNhbbX6YsJhBKt3vnDnN3" crossorigin="anonymous">
   </head>
-  <body class="min-h-screen bg-gradient-to-r from-blue-100 to-white">
-    <header class="p-6">
-      <h1 class="text-2xl font-semibold">Task Manager</h1>
-    </header>
-    <main class="container mx-auto px-4">
-      <%= yield %>
+  <body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container d-flex">
+        <a class="navbar-brand" href="/">Task Manager</a>
+        <span id="clock-container" class="navbar-text text-light ms-auto"></span>
+      </div>
+    </nav>
+    <main class="flex-grow-1">
+      <div class="container my-4">
+        <%= yield %>
+      </div>
     </main>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39W7MTLaFfq3L5Swv5PpM0q7lzLZge3m6d5KG" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var clockContainer = document.getElementById('clock-container');
+        function updateClock() {
+          var now = new Date();
+          var hours = String(now.getHours()).padStart(2, '0');
+          var minutes = String(now.getMinutes()).padStart(2, '0');
+          var seconds = String(now.getSeconds()).padStart(2, '0');
+          clockContainer.textContent = hours + ':' + minutes + ':' + seconds;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+      });
+    </script>
   </body>
 </html>
+
+
