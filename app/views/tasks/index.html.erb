@@ -1,27 +1,52 @@
-<h2 class="text-3xl font-bold mb-6">Tasks</h2>
+<h1 class="mb-4 text-center">Tasks</h1>
+
+<div class="d-flex justify-content-between mb-3">
+  <%= link_to 'New Task', new_task_path, class: 'btn btn-success' %>
+  <%= button_to 'Clear All Tasks', clear_all_tasks_path, method: :delete,
+      data: { confirm: 'Are you sure you want to delete all tasks?' },
+      class: 'btn btn-outline-danger' %>
+</div>
 
 <% if @tasks.any? %>
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    <% @tasks.each do |task| %>
-      <div class="bg-white p-4 rounded-lg shadow task-card <%= 'task-completed' if task.completed? %>">
-        <div class="flex justify-between items-start">
-          <h3 class="text-lg font-semibold"><%= task.name %></h3>
-          <span class="text-xs px-2 py-1 rounded <%= task.completed? ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' %>"><%= task.completed? ? 'Done' : 'Pending' %></span>
-        </div>
-        <p class="mt-2 text-sm text-gray-600"><%= task.description %></p>
-        <p class="mt-2 text-sm text-gray-500"><%= task.time_frame %></p>
-        <div class="mt-4 flex space-x-3 text-sm">
-          <%= link_to 'Show', task, class: 'text-indigo-600 hover:underline' %>
-          <%= link_to 'Edit', edit_task_path(task), class: 'text-indigo-600 hover:underline' %>
-          <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure you want to delete this task?' }, class: 'text-red-600 hover:underline' %>
-        </div>
-      </div>
-    <% end %>
+  <div class="card shadow">
+    <div class="card-body p-0">
+      <table class="table table-striped table-hover mb-0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Time Start</th>
+            <th>Time End</th>
+            <th>Status</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tasks.each.with_index(1) do |task, index| %>
+            <tr class="<%= task.completed? ? 'completed' : '' %>">
+              <td><%= index %></td>
+              <td><%= task.name %></td>
+              <td><%= task.description %></td>
+              <td><%= task.time_start&.strftime('%I:%M %p') %></td>
+              <td><%= task.time_end&.strftime('%I:%M %p') %></td>
+              <td>
+                <span class="badge <%= task.completed? ? 'bg-success' : 'bg-warning text-dark' %>">
+                  <%= task.completed? ? 'Done' : 'Pending' %>
+                </span>
+              </td>
+              <td><%= link_to 'Show', task, class: 'btn btn-sm btn-primary' %></td>
+              <td><%= link_to 'Edit', edit_task_path(task), class: 'btn btn-sm btn-secondary' %></td>
+              <td><%= link_to 'Delete', task, method: :delete,
+                     data: { confirm: 'Are you sure you want to delete this task?' },
+                     class: 'btn btn-sm btn-danger' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 <% else %>
-  <p class="text-gray-500 text-center">No tasks found.</p>
+  <div class="alert alert-info">No tasks found.</div>
 <% end %>
 
-<div class="text-right mt-6">
-  <%= link_to 'Clear All Tasks', clear_all_tasks_path, method: :delete, data: { confirm: 'Are you sure you want to delete all tasks?' }, class: 'text-sm text-gray-600 hover:underline' %>
-</div>
