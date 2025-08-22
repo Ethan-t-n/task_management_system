@@ -26,8 +26,8 @@
               <td><%= index %></td>
               <td><%= task.name %></td>
               <td><%= task.description %></td>
-              <td><%= task.time_start.strftime('%H:%M %p') if task.time_start %></td>
-              <td><%= task.time_end.strftime('%H:%M %p') if task.time_end %></td>
+              <td><%= task.time_start&.strftime('%I:%M %p') %></td>
+              <td><%= task.time_end&.strftime('%I:%M %p') %></td>
               <td>
                 <span class="badge <%= task.completed? ? 'bg-success' : 'bg-warning text-dark' %>">
                   <%= task.completed? ? 'Done' : 'Pending' %>

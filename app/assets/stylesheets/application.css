@@ -8,7 +8,7 @@
 
 tr.completed td:not(:nth-last-child(-n+4)) {
   text-decoration: line-through;
-  color: #6c757d;
+  color: #6c757d; /* Bootstrap-ish muted */
 }
 
 body {
@@ -27,4 +27,3 @@ body {
   font-weight: bold;
   color: #ffffff;
 }
-
