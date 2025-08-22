@@ -2,85 +2,28 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
  *= require_tree .
  *= require_self
  */
-body {
-    background-color: #217dab;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #81C6E8;
-    text-align: center;
-    transition: background-color 0.5s;
-    }
-
-body.background-color-1 {
-    background-color: #800000;
-    }
-    
-body.background-color-2 {
-    background-color: #1900fc;
-    }
-    
-body.background-color-3 {
-    background-color: #009425;
-    }
-
-body.background-color-4 {
-    background-color: #5b0097;
-    }
-
-body.background-color-5 {
-    background-color: #979700;
-    }
-
-#clock-container {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffffff;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    }
-
-ul {
-    list-style: none;
-    padding: 0;
-    }
-    
-li {
-    display: inline;
-    margin: 0 1rem;
-    }
-    
-h1 {
-    margin-bottom: 1rem;
-    }
 
 tr.completed td:not(:nth-last-child(-n+4)) {
-    text-decoration: line-through;
-    color: #000000;
+  text-decoration: line-through;
+  color: #6c757d;
 }
 
-.form-container {
-  margin-bottom: 20px;
+body {
+  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+  min-height: 100vh;
 }
 
-.form-container .field {
-    margin-bottom: 10px;
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-.back-link {
-  margin-top: 5px;
+#clock-container {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
 }
