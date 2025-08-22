@@ -1,47 +1,42 @@
-<h1 class="mb-4 text-center">Tasks</h1>
+<div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-3xl font-bold">Tasks</h2>
+    <div class="space-x-2">
+      <%= link_to 'New Task', new_task_path, class: 'px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600' %>
+      <%= link_to 'Clear All Tasks', clear_all_tasks_path, method: :delete, data: { confirm: 'Are you sure you want to delete all tasks?' }, class: 'px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-100' %>
+    </div>
+  </div>
 
-<div class="d-flex justify-content-between mb-3">
-  <%= link_to 'New Task', new_task_path, class: 'btn btn-success' %>
-  <%= button_to 'Clear All Tasks', clear_all_tasks_path, method: :delete, data: { confirm: 'Are you sure you want to delete all tasks?' }, class: 'btn btn-outline-danger' %>
-</div>
-
-<% if @tasks.any? %>
-  <div class="card shadow">
-    <div class="card-body p-0">
-      <table class="table table-striped table-hover mb-0">
+  <% if @tasks.any? %>
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-left">
         <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Time Start</th>
-            <th>Time End</th>
-            <th>Status</th>
-            <th colspan="3"></th>
+          <tr class="bg-gray-100">
+            <th class="px-4 py-2">#</th>
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Description</th>
+            <th class="px-4 py-2">Time</th>
+            <th class="px-4 py-2">Status</th>
+            <th class="px-4 py-2" colspan="3"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="divide-y">
           <% @tasks.each.with_index(1) do |task, index| %>
             <tr class="<%= task.completed? ? 'completed' : '' %>">
-              <td><%= index %></td>
-              <td><%= task.name %></td>
-              <td><%= task.description %></td>
-              <td><%= task.time_start.strftime('%H:%M %p') if task.time_start %></td>
-              <td><%= task.time_end.strftime('%H:%M %p') if task.time_end %></td>
-              <td>
-                <span class="badge <%= task.completed? ? 'bg-success' : 'bg-warning text-dark' %>">
-                  <%= task.completed? ? 'Done' : 'Pending' %>
-                </span>
-              </td>
-              <td><%= link_to 'Show', task, class: 'btn btn-sm btn-primary' %></td>
-              <td><%= link_to 'Edit', edit_task_path(task), class: 'btn btn-sm btn-secondary' %></td>
-              <td><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure you want to delete this task?' }, class: 'btn btn-sm btn-danger' %></td>
+              <td class="px-4 py-2"><%= index %></td>
+              <td class="px-4 py-2"><%= task.name %></td>
+              <td class="px-4 py-2"><%= task.description %></td>
+              <td class="px-4 py-2"><%= task.time_frame %></td>
+              <td class="px-4 py-2"><%= task.completed? ? 'Done' : 'Pending' %></td>
+              <td class="px-4 py-2"><%= link_to 'Show', task, class: 'text-indigo-600 hover:underline' %></td>
+              <td class="px-4 py-2"><%= link_to 'Edit', edit_task_path(task), class: 'text-indigo-600 hover:underline' %></td>
+              <td class="px-4 py-2"><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure you want to delete this task?' }, class: 'text-red-600 hover:underline' %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-  </div>
-<% else %>
-  <div class="alert alert-info">No tasks found.</div>
-<% end %>
+  <% else %>
+    <p class="text-gray-500">No tasks found.</p>
+  <% end %>
+</div>
